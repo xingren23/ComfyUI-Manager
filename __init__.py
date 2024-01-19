@@ -782,7 +782,7 @@ async def fetch_customnode_mappings(request):
     return web.json_response(json_obj, content_type='application/json')
 
 
-@server.PromptServer.instance.routes.get("/customnode/fetch_updates")
+# @server.PromptServer.instance.routes.get("/customnode/fetch_updates")
 async def fetch_updates(request):
     try:
         json_obj = await get_data_by_mode(request.rel_url.query["mode"], 'custom-node-list.json')
@@ -800,7 +800,7 @@ async def fetch_updates(request):
         return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/customnode/update_all")
+# @server.PromptServer.instance.routes.get("/customnode/update_all")
 async def update_all(request):
     try:
         save_snapshot_with_postfix('autosave')
@@ -868,7 +868,7 @@ def populate_markdown(x):
         x['title'] = x['title'].replace('<', '&lt;').replace('>', '&gt;')
 
 
-@server.PromptServer.instance.routes.get("/customnode/getlist")
+# @server.PromptServer.instance.routes.get("/customnode/getlist")
 async def fetch_customnode_list(request):
     if "skip_update" in request.rel_url.query and request.rel_url.query["skip_update"] == "true":
         skip_update = True
@@ -917,7 +917,7 @@ async def fetch_customnode_list(request):
     return web.json_response(json_obj, content_type='application/json')
 
 
-@server.PromptServer.instance.routes.get("/alternatives/getlist")
+# @server.PromptServer.instance.routes.get("/alternatives/getlist")
 async def fetch_alternatives_list(request):
     if "skip_update" in request.rel_url.query and request.rel_url.query["skip_update"] == "true":
         skip_update = True
@@ -962,7 +962,7 @@ def check_model_installed(json_obj):
             executor.submit(process_model, item)
 
 
-@server.PromptServer.instance.routes.get("/externalmodel/getlist")
+# @server.PromptServer.instance.routes.get("/externalmodel/getlist")
 async def fetch_externalmodel_list(request):
     json_obj = await get_data_by_mode(request.rel_url.query["mode"], 'model-list.json')
 
@@ -974,7 +974,7 @@ async def fetch_externalmodel_list(request):
     return web.json_response(json_obj, content_type='application/json')
 
 
-@server.PromptServer.instance.routes.get("/snapshot/getlist")
+# @server.PromptServer.instance.routes.get("/snapshot/getlist")
 async def get_snapshot_list(request):
     snapshots_directory = os.path.join(os.path.dirname(__file__), 'snapshots')
     items = [f[:-5] for f in os.listdir(snapshots_directory) if f.endswith('.json')]
@@ -982,7 +982,7 @@ async def get_snapshot_list(request):
     return web.json_response({'items': items}, content_type='application/json')
 
 
-@server.PromptServer.instance.routes.get("/snapshot/remove")
+# @server.PromptServer.instance.routes.get("/snapshot/remove")
 async def remove_snapshot(request):
     try:
         target = request.rel_url.query["target"]
@@ -996,7 +996,7 @@ async def remove_snapshot(request):
         return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/snapshot/restore")
+# @server.PromptServer.instance.routes.get("/snapshot/restore")
 async def remove_snapshot(request):
     try:
         target = request.rel_url.query["target"]
@@ -1084,7 +1084,7 @@ def save_snapshot_with_postfix(postfix):
             json.dump(get_current_snapshot(), json_file, indent=4)
 
 
-@server.PromptServer.instance.routes.get("/snapshot/get_current")
+# @server.PromptServer.instance.routes.get("/snapshot/get_current")
 async def get_current_snapshot_api(request):
     try:
         return web.json_response(get_current_snapshot(), content_type='application/json')
@@ -1092,7 +1092,7 @@ async def get_current_snapshot_api(request):
         return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/snapshot/save")
+# @server.PromptServer.instance.routes.get("/snapshot/save")
 async def save_snapshot(request):
     try:
         save_snapshot_with_postfix('snapshot')
@@ -1477,7 +1477,7 @@ def gitclone_update(files):
     return True
 
 
-@server.PromptServer.instance.routes.post("/customnode/install")
+# @server.PromptServer.instance.routes.post("/customnode/install")
 async def install_custom_node(request):
     json_data = await request.json()
 
@@ -1512,7 +1512,7 @@ async def install_custom_node(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.post("/customnode/fix")
+# @server.PromptServer.instance.routes.post("/customnode/fix")
 async def fix_custom_node(request):
     json_data = await request.json()
 
@@ -1542,7 +1542,7 @@ async def fix_custom_node(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/customnode/install/git_url")
+# @server.PromptServer.instance.routes.get("/customnode/install/git_url")
 async def install_custom_node_git_url(request):
     res = False
     if "url" in request.rel_url.query:
@@ -1556,7 +1556,7 @@ async def install_custom_node_git_url(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/customnode/install/pip")
+# @server.PromptServer.instance.routes.get("/customnode/install/pip")
 async def install_custom_node_git_url(request):
     res = False
     if "packages" in request.rel_url.query:
@@ -1566,7 +1566,7 @@ async def install_custom_node_git_url(request):
     return web.Response(status=200)
 
 
-@server.PromptServer.instance.routes.post("/customnode/uninstall")
+# @server.PromptServer.instance.routes.post("/customnode/uninstall")
 async def uninstall_custom_node(request):
     json_data = await request.json()
 
@@ -1590,7 +1590,7 @@ async def uninstall_custom_node(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.post("/customnode/update")
+# @server.PromptServer.instance.routes.post("/customnode/update")
 async def update_custom_node(request):
     json_data = await request.json()
 
@@ -1610,7 +1610,7 @@ async def update_custom_node(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/comfyui_manager/update_comfyui")
+# @server.PromptServer.instance.routes.get("/comfyui_manager/update_comfyui")
 async def update_comfyui(request):
     print(f"Update ComfyUI")
 
@@ -1664,7 +1664,7 @@ async def update_comfyui(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.post("/customnode/toggle_active")
+# @server.PromptServer.instance.routes.post("/customnode/toggle_active")
 async def toggle_active(request):
     json_data = await request.json()
 
@@ -1686,7 +1686,7 @@ async def toggle_active(request):
     return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.post("/model/install")
+# @server.PromptServer.instance.routes.post("/model/install")
 async def install_model(request):
     json_data = await request.json()
 
@@ -1730,7 +1730,7 @@ class ManagerTerminalHook:
 manager_terminal_hook = ManagerTerminalHook()
 
 
-@server.PromptServer.instance.routes.get("/manager/terminal")
+# @server.PromptServer.instance.routes.get("/manager/terminal")
 async def terminal_mode(request):
     if "mode" in request.rel_url.query:
         if request.rel_url.query['mode'] == 'true':
@@ -1809,7 +1809,7 @@ async def channel_url_list(request):
     return web.Response(status=200)
 
 
-@server.PromptServer.instance.routes.get("/manager/notice")
+# @server.PromptServer.instance.routes.get("/manager/notice")
 async def get_notice(request):
     url = "github.com"
     path = "/ltdrdata/ltdrdata.github.io/wiki/News"
@@ -1847,7 +1847,7 @@ async def get_notice(request):
         conn.close()
 
 
-@server.PromptServer.instance.routes.get("/manager/reboot")
+# @server.PromptServer.instance.routes.get("/manager/reboot")
 def restart(self):
     try:
         sys.stdout.close_log()
@@ -1863,7 +1863,7 @@ def sanitize_filename(input_string):
     return result_string
 
 
-@server.PromptServer.instance.routes.post("/manager/component/save")
+# @server.PromptServer.instance.routes.post("/manager/component/save")
 async def save_component(request):
     try:
         data = await request.json()
@@ -1893,7 +1893,7 @@ async def save_component(request):
         return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.post("/manager/component/loads")
+# @server.PromptServer.instance.routes.post("/manager/component/loads")
 async def load_components(request):
     try:
         json_files = [f for f in os.listdir(components_path) if f.endswith('.json')]
@@ -1915,7 +1915,7 @@ async def load_components(request):
         return web.Response(status=400)
 
 
-@server.PromptServer.instance.routes.get("/manager/share_option")
+# @server.PromptServer.instance.routes.get("/manager/share_option")
 async def share_option(request):
     if "value" in request.rel_url.query:
         get_config()['share_option'] = request.rel_url.query['value']
@@ -1984,7 +1984,7 @@ def set_youml_settings(settings):
         f.write(settings)
 
 
-@server.PromptServer.instance.routes.get("/manager/get_openart_auth")
+# @server.PromptServer.instance.routes.get("/manager/get_openart_auth")
 async def api_get_openart_auth(request):
     # print("Getting stored Matrix credentials...")
     openart_key = get_openart_auth()
@@ -1993,7 +1993,7 @@ async def api_get_openart_auth(request):
     return web.json_response({"openart_key": openart_key})
 
 
-@server.PromptServer.instance.routes.post("/manager/set_openart_auth")
+# @server.PromptServer.instance.routes.post("/manager/set_openart_auth")
 async def api_set_openart_auth(request):
     json_data = await request.json()
     openart_key = json_data['openart_key']
@@ -2002,7 +2002,7 @@ async def api_set_openart_auth(request):
     return web.Response(status=200)
 
 
-@server.PromptServer.instance.routes.get("/manager/get_matrix_auth")
+# @server.PromptServer.instance.routes.get("/manager/get_matrix_auth")
 async def api_get_matrix_auth(request):
     # print("Getting stored Matrix credentials...")
     matrix_auth = get_matrix_auth()
@@ -2011,7 +2011,7 @@ async def api_get_matrix_auth(request):
     return web.json_response(matrix_auth)
 
 
-@server.PromptServer.instance.routes.get("/manager/youml/settings")
+# @server.PromptServer.instance.routes.get("/manager/youml/settings")
 async def api_get_youml_settings(request):
     youml_settings = get_youml_settings()
     if not youml_settings:
@@ -2019,14 +2019,14 @@ async def api_get_youml_settings(request):
     return web.json_response(json.loads(youml_settings))
 
 
-@server.PromptServer.instance.routes.post("/manager/youml/settings")
+# @server.PromptServer.instance.routes.post("/manager/youml/settings")
 async def api_set_youml_settings(request):
     json_data = await request.json()
     set_youml_settings(json.dumps(json_data))
     return web.Response(status=200)
 
 
-@server.PromptServer.instance.routes.get("/manager/get_comfyworkflows_auth")
+# @server.PromptServer.instance.routes.get("/manager/get_comfyworkflows_auth")
 async def api_get_comfyworkflows_auth(request):
     # Check if the user has provided Matrix credentials in a file called 'matrix_accesstoken'
     # in the same directory as the ComfyUI base folder
@@ -2099,7 +2099,7 @@ def compute_sha256_checksum(filepath):
             sha256.update(chunk)
     return sha256.hexdigest()
 
-@server.PromptServer.instance.routes.post("/manager/share")
+# @server.PromptServer.instance.routes.post("/manager/share")
 async def share_art(request):
     # get json data
     json_data = await request.json()
@@ -2331,7 +2331,7 @@ async def default_cache_update():
 
     await asyncio.gather(a, b, c, d)
 
-threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
+# threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
 
 
 WEB_DIRECTORY = "js"

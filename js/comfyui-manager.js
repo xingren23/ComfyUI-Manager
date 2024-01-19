@@ -21,8 +21,8 @@ import { ComponentBuilderDialog, load_components, set_component_policy, getPureN
 var docStyle = document.createElement('style');
 docStyle.innerHTML = `
 #cm-manager-dialog {
-	width: 1000px;
-	height: 495px;
+	width: 400px;
+	height: 300px;
 	box-sizing: content-box;
 	z-index: 10000;
 }
@@ -917,17 +917,17 @@ class ManagerMenuDialog extends ComfyDialog {
 		return [
 			$el("div", {}, [this.update_check_checkbox, uc_checkbox_text]),
 			$el("br", {}, []),
-			this.datasrc_combo,
-			channel_combo,
+			// this.datasrc_combo,
+			// channel_combo,
 			preview_combo,
 			badge_combo,
 			default_ui_combo,
-			share_combo,
-			component_policy_combo,
+			// share_combo,
+			// component_policy_combo,
 			$el("br", {}, []),
 
 			$el("br", {}, []),
-			$el("filedset.cm-experimental", {}, [
+			// $el("filedset.cm-experimental", {}, [
 					// $el("legend.cm-experimental-legend", {}, ["EXPERIMENTAL"]),
 					// $el("button.cm-experimental-button", {
 					// 	type: "button",
@@ -956,7 +956,7 @@ class ManagerMenuDialog extends ComfyDialog {
 					// 	textContent: "Unload models",
 					// 	onclick: () => { free_models(); }
 					// })
-				]),
+				// ]),
 		];
 	}
 
