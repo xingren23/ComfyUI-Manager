@@ -928,34 +928,34 @@ class ManagerMenuDialog extends ComfyDialog {
 
 			$el("br", {}, []),
 			$el("filedset.cm-experimental", {}, [
-					$el("legend.cm-experimental-legend", {}, ["EXPERIMENTAL"]),
-					$el("button.cm-experimental-button", {
-						type: "button",
-						textContent: "Snapshot Manager",
-						onclick:
-							() => {
-								if(!SnapshotManager.instance)
-								SnapshotManager.instance = new SnapshotManager(app, self);
-								SnapshotManager.instance.show();
-							}
-					}),
-					$el("button.cm-experimental-button", {
-						type: "button",
-						textContent: "Install PIP packages",
-						onclick:
-							() => {
-								var url = prompt("Please enumerate the pip packages to be installed.\n\nExample: insightface opencv-python-headless>=4.1.1\n", "");
+					// $el("legend.cm-experimental-legend", {}, ["EXPERIMENTAL"]),
+					// $el("button.cm-experimental-button", {
+					// 	type: "button",
+					// 	textContent: "Snapshot Manager",
+					// 	onclick:
+					// 		() => {
+					// 			if(!SnapshotManager.instance)
+					// 			SnapshotManager.instance = new SnapshotManager(app, self);
+					// 			SnapshotManager.instance.show();
+					// 		}
+					// }),
+					// $el("button.cm-experimental-button", {
+					// 	type: "button",
+					// 	textContent: "Install PIP packages",
+					// 	onclick:
+					// 		() => {
+					// 			var url = prompt("Please enumerate the pip packages to be installed.\n\nExample: insightface opencv-python-headless>=4.1.1\n", "");
 
-								if (url !== null) {
-									install_pip(url, self);
-								}
-							}
-					}),
-					$el("button.cm-experimental-button", {
-						type: "button",
-						textContent: "Unload models",
-						onclick: () => { free_models(); }
-					})
+					// 			if (url !== null) {
+					// 				install_pip(url, self);
+					// 			}
+					// 		}
+					// }),
+					// $el("button.cm-experimental-button", {
+					// 	type: "button",
+					// 	textContent: "Unload models",
+					// 	onclick: () => { free_models(); }
+					// })
 				]),
 		];
 	}
@@ -1085,8 +1085,8 @@ class ManagerMenuDialog extends ComfyDialog {
 						$el("div.cm-menu-container",
 							[
 								$el("div.cm-menu-column", [...this.createControlsLeft()]),
-								$el("div.cm-menu-column", [...this.createControlsMid()]),
-								$el("div.cm-menu-column", [...this.createControlsRight()])
+								// $el("div.cm-menu-column", [...this.createControlsMid()]),
+								// $el("div.cm-menu-column", [...this.createControlsRight()])
 							]),
 
 						$el("br", {}, []),
@@ -1221,36 +1221,36 @@ app.registerExtension({
 		menu.append(managerButton);
 
 
-		const shareButton = document.createElement("button");
-		shareButton.id = "shareButton";
-		shareButton.textContent = "Share";
-		shareButton.onclick = () => {
-			if (share_option === 'openart') {
-				showOpenArtShareDialog();
-				return;
-			} else if (share_option === 'matrix' || share_option === 'comfyworkflows') {
-				showShareDialog(share_option);
-				return;
-			} else if (share_option === 'youml') {
-				showYouMLShareDialog();
-				return;
-			}
+		// const shareButton = document.createElement("button");
+		// shareButton.id = "shareButton";
+		// shareButton.textContent = "Share";
+		// shareButton.onclick = () => {
+		// 	if (share_option === 'openart') {
+		// 		showOpenArtShareDialog();
+		// 		return;
+		// 	} else if (share_option === 'matrix' || share_option === 'comfyworkflows') {
+		// 		showShareDialog(share_option);
+		// 		return;
+		// 	} else if (share_option === 'youml') {
+		// 		showYouMLShareDialog();
+		// 		return;
+		// 	}
 
-			if(!ShareDialogChooser.instance) {
-				ShareDialogChooser.instance = new ShareDialogChooser();
-			}
-			ShareDialogChooser.instance.show();
-		}
-		// make the background color a gradient of blue to green
-		shareButton.style.background = "linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)";
-		shareButton.style.color = "black";
+		// 	if(!ShareDialogChooser.instance) {
+		// 		ShareDialogChooser.instance = new ShareDialogChooser();
+		// 	}
+		// 	ShareDialogChooser.instance.show();
+		// }
+		// // make the background color a gradient of blue to green
+		// shareButton.style.background = "linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)";
+		// shareButton.style.color = "black";
 
-		// Load share option from local storage to determine whether to show
-		// the share button.
-		const shouldShowShareButton = share_option !== 'none';
-		shareButton.style.display = shouldShowShareButton ? "inline-block" : "none";
+		// // Load share option from local storage to determine whether to show
+		// // the share button.
+		// const shouldShowShareButton = share_option !== 'none';
+		// shareButton.style.display = shouldShowShareButton ? "inline-block" : "none";
 
-		menu.append(shareButton);
+		// menu.append(shareButton);
 	},
 
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
