@@ -194,7 +194,7 @@ try:
 
         def sync_write(self, message):
             with log_lock:
-                timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')[:-3]
+                timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 if self.last_char != '\n':
                     log_file.write(message)
                 else:
